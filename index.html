@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <title>Benessere e Nutrizione | Incaricato Indipendente Herbalife</title>
+    <title>Incaricato Herbalife - Consulenza Personalizzata</title>
     <style>
         * {
             margin: 0;
@@ -13,39 +12,79 @@
         }
 
         :root {
-            --primary: #78be20; /* Verde Herbalife */
-            --dark: #2d2d2d;
-            --light: #f4f7f6;
-            --white: #ffffff;
+            --color-primary: #78BE20;
+            --color-dark: #1a1a1a;
+            --color-light: #f5f5f5;
+            --color-gray: #666;
+            --color-white: #ffffff;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
             line-height: 1.6;
-            color: var(--dark);
-            background: var(--light);
+            color: var(--color-dark);
+            background-color: var(--color-white);
         }
 
-        /* Compliance Popup */
-        #compliance-popup {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); z-index: 1000; display: flex;
-            align-items: center; justify-content: center; padding: 20px;
+        /* Modal Pop-up */
+        .compliance-modal {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
         }
-        .popup-content {
-            background: var(--white); padding: 30px; border-radius: 12px;
-            max-width: 500px; text-align: center;
+
+        .compliance-modal.hidden {
+            display: none;
         }
-        .btn-primary {
-            background: var(--primary); color: white; border: none;
-            padding: 12px 24px; border-radius: 6px; cursor: pointer;
-            font-weight: 600; margin-top: 20px; width: 100%;
+
+        .modal-content {
+            background-color: var(--color-white);
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content h2 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .modal-content p {
+            color: var(--color-gray);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .modal-content button {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .modal-content button:hover {
+            background-color: #5a9b1a;
         }
 
         /* Header */
         header {
-            background: linear-gradient(135deg, var(--primary) 0%, #5a9e1a 100%);
-            color: var(--white);
+            background: linear-gradient(135deg, var(--color-primary) 0%, #9ed321 100%);
+            color: var(--color-white);
             padding: 1rem;
             text-align: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -63,17 +102,17 @@
 
         /* Compliance Badge */
         .compliance-badge {
-            background-color: var(--light);
+            background-color: var(--color-light);
             padding: 0.8rem;
             text-align: center;
             font-size: 0.85rem;
-            color: #666;
-            border-top: 2px solid var(--primary);
+            color: var(--color-gray);
+            border-top: 2px solid var(--color-primary);
         }
 
         .compliance-badge strong {
             display: block;
-            color: var(--dark);
+            color: var(--color-dark);
             margin-bottom: 0.3rem;
         }
 
@@ -93,7 +132,8 @@
         .hero img {
             width: 100%;
             max-width: 400px;
-            height: auto;
+            height: 300px;
+            object-fit: cover;
             border-radius: 8px;
             margin-bottom: 1.5rem;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -101,34 +141,34 @@
 
         .hero h2 {
             font-size: 1.6rem;
-            color: var(--primary);
+            color: var(--color-primary);
             margin-bottom: 1rem;
             line-height: 1.3;
         }
 
         .hero p {
             font-size: 1.05rem;
-            color: #666;
+            color: var(--color-gray);
             margin-bottom: 1.5rem;
         }
 
         /* Bio Section */
         .bio-section {
-            background-color: var(--light);
+            background-color: var(--color-light);
             padding: 2rem;
             border-radius: 8px;
             margin-bottom: 2rem;
-            border-left: 4px solid var(--primary);
+            border-left: 4px solid var(--color-primary);
         }
 
         .bio-section h3 {
-            color: var(--primary);
+            color: var(--color-primary);
             margin-bottom: 1rem;
             font-size: 1.3rem;
         }
 
         .bio-section p {
-            color: #666;
+            color: var(--color-gray);
             line-height: 1.8;
             margin-bottom: 0.8rem;
         }
@@ -208,7 +248,7 @@
         }
 
         .checkbox-group a {
-            color: var(--primary);
+            color: var(--color-primary);
             text-decoration: none;
         }
 
@@ -219,8 +259,8 @@
         .submit-btn {
             width: 100%;
             padding: 1rem;
-            background-color: var(--primary);
-            color: var(--white);
+            background-color: var(--color-primary);
+            color: var(--color-white);
             border: none;
             border-radius: 4px;
             font-size: 1.05rem;
@@ -231,22 +271,13 @@
         }
 
         .submit-btn:hover {
-            background-color: #5a9e1a;
+            background-color: #5a9b1a;
         }
 
         .submit-btn:disabled {
             background-color: #ccc;
             cursor: not-allowed;
         }
-
-        /* Form Style */
-        .contact-form { background: var(--white); padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 14px; }
-        input, select, textarea {
-            width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px;
-        }
-        .hidden { display: none; }
 
         /* WhatsApp CTA */
         .whatsapp-cta {
@@ -255,7 +286,7 @@
             padding: 1.5rem;
             background-color: #25D366;
             border-radius: 8px;
-            color: var(--white);
+            color: var(--color-white);
         }
 
         .whatsapp-cta p {
@@ -265,7 +296,7 @@
 
         .whatsapp-btn {
             display: inline-block;
-            background-color: var(--white);
+            background-color: var(--color-white);
             color: #25D366;
             padding: 0.8rem 1.5rem;
             border-radius: 4px;
@@ -280,8 +311,8 @@
 
         /* Footer */
         footer {
-            background-color: var(--dark);
-            color: var(--white);
+            background-color: var(--color-dark);
+            color: var(--color-white);
             padding: 1.5rem;
             text-align: center;
             font-size: 0.85rem;
@@ -339,15 +370,14 @@
     </style>
 </head>
 <body>
-    <!-- Herbalife Mandatory Splash Popup -->
-    <div id="compliance-popup">
-        <div class="popup-content">
-            <h3>Benvenuti nel mio sito web!</h3>
-            <p style="margin-top:15px; font-size: 14px;">
-                In qualità di Incaricato alle Vendite Indipendente Herbalife, sono qui per aiutarti a raggiungere i tuoi obiettivi di benessere e nutrizione. 
-                Cliccando sotto confermi di voler visualizzare le mie informazioni personali.
-            </p>
-            <button class="btn-primary" onclick="closePopup()">Entra nel sito</button>
+    <!-- Compliance Pop-up Modal -->
+    <div id="complianceModal" class="compliance-modal">
+        <div class="modal-content">
+            <h2>Benvenuto!</h2>
+            <p><strong>Questo sito è gestito da un Incaricato alle Vendite Indipendente Herbalife.</strong></p>
+            <p>Non è un sito ufficiale Herbalife Nutrition. I prodotti Herbalife Nutrition non sono destinati a diagnosticare, curare, mitigare, trattare o prevenire alcuna malattia.</p>
+            <p>Proseguendo, accetti di aver letto e compreso questo avviso.</p>
+            <button onclick="closeModal()">Ho capito</button>
         </div>
     </div>
 
@@ -360,14 +390,15 @@
     <!-- Compliance Badge -->
     <div class="compliance-badge">
         <strong>Incaricato/a alle Vendite Indipendente Herbalife</strong>
-        Nome Completo: Alessandro<br>
-        Telefono: <a href="tel:+393386788075">+39 338 678 8075</a>
+        Nome Completo: [Inserisci Nome]<br>
+        Telefono: [Inserisci Numero]
     </div>
 
     <!-- Main Container -->
     <div class="container">
         <!-- Hero Section -->
         <section class="hero">
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&h=300&fit=crop" alt="Donna con stile di vita sano e attivo">
             <h2>Raggiungi la Tua Versione Migliore</h2>
             <p>Scopri come una corretta nutrizione e uno stile di vita attivo possono trasformare il tuo benessere quotidiano.</p>
         </section>
@@ -375,108 +406,158 @@
         <!-- Bio Section -->
         <section class="bio-section">
             <h3>Chi Sono</h3>
-            <p><strong>La mia storia:</strong> BIOGRAFIA </p>
+            <p><strong>La mia storia:</strong> [Inserisci breve biografia con trasformazione personale e motivazione nel guidare gli altri - max 3-4 frasi]</p>
             <p><strong>La mia missione:</strong> Supportare chi desidera raggiungere i propri obiettivi di benessere attraverso nutrizione consapevole e motivazione costante.</p>
             <p><strong>La differenza:</strong> Offro un approccio personalizzato basato sugli obiettivi individuali, non soluzioni generiche.</p>
         </section>
 
+        <!-- Message Display -->
+        <div id="messageContainer"></div>
 
-        <section class="contact-form">
-            <h2>Contattami</h2>
-            <p style="font-size: 14px; margin-bottom: 20px;">Compila il form per una consulenza gratuita.</p>
-            
-            <form name="herbalife-lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="main-form">
-                <!-- Honeypot (Protezione Spam) -->
-                <p class="hidden">
-                    <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
-                </p>
-                <!-- Nome del form per Netlify -->
-                <input type="hidden" name="form-name" value="herbalife-lead" />
+        <!-- Form Section -->
+        <section class="form-section">
+            <h3>Contattami per una Consulenza Gratuita</h3>
+            <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                <!-- Web3Forms Access Key (sostituisci con la tua chiave) -->
+                <input type="hidden" name="access_key" value="INSERISCI_TUA_CHIAVE_WEB3FORMS_QUI">
+                
+                <!-- Email di ricezione -->
+                <input type="hidden" name="email" value="INSERISCI_TUA_EMAIL_QUI">
+                
+                <!-- Configurazione email -->
+                <input type="hidden" name="subject" value="Nuovo Lead Herbalife da Landing Page">
+                <input type="hidden" name="from_name" value="Landing Page Herbalife">
+                
+                <!-- Redirect opzionale dopo l'invio (commenta se non desideri il redirect) -->
+                <!-- <input type="hidden" name="redirect" value="https://yoursite.com/grazie"> -->
 
                 <div class="form-group">
-                    <label for="name">Nome e Cognome</label>
-                    <input type="text" id="name" name="name" required placeholder="Es: Mario Rossi">
+                    <label for="name">Nome e Cognome *</label>
+                    <input type="text" name="name" id="name" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required placeholder="mario.rossi@email.it">
+                    <label for="email_user">Email *</label>
+                    <input type="email" name="email_user" id="email_user" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="phone">Telefono / WhatsApp</label>
-                    <input type="tel" id="phone" name="phone" required placeholder="+39 333 1234567">
+                    <label for="phone">Telefono *</label>
+                    <input type="tel" name="phone" id="phone" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="goal">Il tuo obiettivo principale</label>
-                    <select id="goal" name="goal">
-                        <option value="controllo-peso">Controllo del Peso</option>
-                        <option value="energia">Più Energia e Vitalità</option>
-                        <option value="sport">Nutrizione Sportiva</option>
-                        <option value="altro">Altro / Info Prodotti</option>
+                    <label for="objective">Quale è il tuo principale obiettivo? *</label>
+                    <select name="objective" id="objective" required>
+                        <option value="">-- Seleziona un'opzione --</option>
+                        <option value="Perdita peso">Perdita di peso</option>
+                        <option value="Maggiore energia">Maggiore energia e vitalità</option>
+                        <option value="Supporto fitness">Supporto per attività sportiva</option>
+                        <option value="Salute generale">Migliorare la salute generale</option>
+                        <option value="Altro">Altro</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="time">Quando preferisci essere contattato?</label>
-                    <select id="time" name="time">
-                        <option value="mattina">Mattina (9-12)</option>
-                        <option value="pomeriggio">Pomeriggio (14-18)</option>
-                        <option value="sera">Sera (18-20)</option>
+                    <label for="availability">Fascia oraria preferita per il contatto *</label>
+                    <select name="availability" id="availability" required>
+                        <option value="">-- Seleziona un'opzione --</option>
+                        <option value="Mattina (8-12)">Mattina (8-12)</option>
+                        <option value="Pomeriggio (13-17)">Pomeriggio (13-17)</option>
+                        <option value="Sera (18-21)">Sera (18-21)</option>
+                        <option value="Qualsiasi orario">Qualsiasi orario</option>
                     </select>
                 </div>
 
-                <button type="submit" class="btn-primary">Invia Richiesta</button>
+                <div class="form-group">
+                    <label for="message">Messaggio Aggiuntivo</label>
+                    <textarea name="message" id="message" placeholder="Condividi eventuali dettagli che vuoi che sappia..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="privacy" name="privacy" required>
+                        <label for="privacy">Accetto la <a href="#" target="_blank">Privacy Policy</a> e desidero essere contattato *</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Invia la Richiesta</button>
             </form>
-            <div id="form-feedback" style="display:none; text-align:center; padding: 20px; color: green; font-weight: bold;">
-                Messaggio inviato! Ti contatterò a breve.
-            </div>
         </section>
 
         <!-- WhatsApp CTA -->
         <div class="whatsapp-cta">
             <p>📱 Preferisci un contatto immediato?</p>
-            <a href="https://wa.me/+393386788075?text=Ciao%2C%20ti%20scrivo%20dal%20tuo%20sito%20web%20e%20vorrei%20informazioni%20sulla%20valutazione%20del%20benessere" class="whatsapp-btn" target="_blank">Scrivimi su WhatsApp</a>
+            <a href="https://wa.me/39[NUMERO_WHATSAPP]?text=Ciao%2C%20arrivo%20da%20Instagram%20e%20vorrei%20informazioni%20sulla%20valutazione%20del%20benessere" class="whatsapp-btn" target="_blank">Scrivimi su WhatsApp</a>
         </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        <!-- Mandatory Identification -->
-        <p><strong>Alessandro</strong></p>
-        <p>Incaricato alle Vendite Indipendente Herbalife</p>
-        <p>[Indirizzo, Città, CAP]</p>
-        <p>Tel: +39 338 678 8075 | Email: [La tua email]</p>
-        <p style="margin-top: 15px;">© 2026 Tutti i diritti riservati. I marchi Herbalife sono usati su licenza.</p>
-        <p><a href="#" style="color: #666;">Privacy Policy</a></p>
+        <p><strong>Disclaimer Importante:</strong> Questo sito è gestito da un Incaricato alle Vendite Indipendente Herbalife. I prodotti Herbalife non sono destinati a diagnosticare, curare, mitigare, trattare o prevenire alcuna malattia.</p>
+        <p>© 2026 Herbalife Distributor | Tutti i diritti riservati</p>
     </footer>
 
     <script>
-        // Funzione per chiudere il popup obbligatorio
-        function closePopup() {
-            document.getElementById('compliance-popup').style.display = 'none';
+        // Show modal on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('complianceModal').classList.remove('hidden');
+        });
+
+        function closeModal() {
+            document.getElementById('complianceModal').classList.add('hidden');
         }
 
-        // Gestione invio Form via AJAX (Netlify)
-        const myForm = document.getElementById("main-form");
-        const feedback = document.getElementById("form-feedback");
-
-        myForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const formData = new FormData(myForm);
+        // Web3Forms submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            const button = document.querySelector('.submit-btn');
+            button.disabled = true;
+            button.textContent = 'Invio in corso...';
             
-            fetch("/", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams(formData).toString(),
+            // Web3Forms gestisce automaticamente l'invio via fetch
+            // Non serve preventDefault() se desideri usare il comportamento nativo
+            // Ma per UX migliore, gestiamo il submit tramite JavaScript
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const actionUrl = this.getAttribute('action');
+
+            fetch(actionUrl, {
+                method: 'POST',
+                body: formData
             })
-            .then(() => {
-                myForm.style.display = "none";
-                feedback.style.display = "block";
+            .then(response => {
+                if (response.ok) {
+                    displayMessage('✅ Grazie! Ti contatterò al più presto. 🎉', 'success');
+                    document.getElementById('contactForm').reset();
+                    button.disabled = false;
+                    button.textContent = 'Invia la Richiesta';
+                } else {
+                    throw new Error('Errore nell\'invio');
+                }
             })
-            .catch((error) => alert("Errore nell'invio: " + error));
+            .catch(error => {
+                console.error('Error:', error);
+                displayMessage('❌ Errore nell\'invio. Riprova più tardi.', 'error');
+                button.disabled = false;
+                button.textContent = 'Invia la Richiesta';
+            });
         });
+
+        function displayMessage(text, type) {
+            const container = document.getElementById('messageContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.textContent = text;
+            container.innerHTML = '';
+            container.appendChild(messageDiv);
+            
+            if (type === 'success') {
+                setTimeout(() => {
+                    messageDiv.classList.add('hidden');
+                }, 4000);
+            }
+        }
     </script>
 </body>
 </html>
